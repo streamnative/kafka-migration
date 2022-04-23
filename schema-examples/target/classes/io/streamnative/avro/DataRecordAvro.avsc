@@ -1,0 +1,7 @@
+{"namespace": "io.streamnative.avro",
+ "type": "record",
+ "name": "DataRecordAvro",
+ "fields": [
+     {"name": "count", "type": "long"}
+ ]
+}

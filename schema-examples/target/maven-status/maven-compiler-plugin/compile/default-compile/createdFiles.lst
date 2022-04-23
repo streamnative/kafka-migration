@@ -1,0 +1,8 @@
+io/streamnative/avro/AvroConsumer.class
+io/streamnative/json/JsonProducer.class
+io/streamnative/json/JsonConsumer.class
+io/streamnative/avro/DataRecordAvro$Builder.class
+io/streamnative/avro/AvroProducer.class
+io/streamnative/avro/DataRecordAvro.class
+io/streamnative/avro/AvroProducer$1.class
+io/streamnative/json/JsonProducer$1.class
