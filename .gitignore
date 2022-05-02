@@ -1,1 +1,6 @@
 .idea/
+/KStream-examples/KStream-examples.iml
+/kafka-migration.iml
+/KStream-examples/target/
+/hello-world/hello-world.iml
+/common/common.iml
