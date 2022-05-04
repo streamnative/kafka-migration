@@ -13,6 +13,7 @@
         <module>hello-world</module>
         <module>schema-examples</module>
         <module>KStream-examples</module>
+        <module>KTable-examples</module>
     </modules>
 
     <properties>
