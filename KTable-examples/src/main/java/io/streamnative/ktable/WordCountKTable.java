@@ -1,4 +1,4 @@
-package io.streamnative.kstream;
+package io.streamnative.ktable;
 
 import io.streamnative.util.PropertyLoader;
 import org.apache.kafka.common.serialization.Serdes;
@@ -7,19 +7,17 @@ import org.apache.kafka.streams.KafkaStreams;
 import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.StreamsConfig;
 import org.apache.kafka.streams.Topology;
-import org.apache.kafka.streams.kstream.KStream;
-import org.apache.kafka.streams.kstream.Materialized;
-import org.apache.kafka.streams.kstream.Produced;
+import org.apache.kafka.streams.kstream.*;
+import org.apache.kafka.streams.state.KeyValueBytesStoreSupplier;
 import org.apache.kafka.streams.state.KeyValueStore;
+import org.apache.kafka.streams.state.StoreBuilder;
 import org.apache.kafka.streams.state.Stores;
 
-
 import java.util.Arrays;
-import java.util.Locale;
 import java.util.Properties;
 import java.util.concurrent.CountDownLatch;
 
-public class WordCount {
+public class WordCountKTable {
 
     public static void main(final String[] args) throws Exception {
 
@@ -32,14 +30,18 @@ public class WordCount {
 
         final StreamsBuilder builder = new StreamsBuilder();
 
-        KStream<String, String> source = builder.stream("persistent://public/default/sentence-topic");
-        source.flatMapValues(value -> Arrays.asList(value.toLowerCase(Locale.getDefault()).split("\\W+")))
-                .groupBy((key, value) -> value)
-                .count(Materialized.as(Stores.inMemoryKeyValueStore("counts-store")))
-                .toStream()
-                .peek((k, v) -> { System.out.println(" Value: " + v); })
+        KStream<String, String> textLines = builder.stream("persistent://public/default/sentence-topic");
+        textLines.peek((k, v) -> { System.out.println(v); });
+
+        KTable<String, Long> wordCounts = textLines
+                .flatMapValues(textLine -> Arrays.asList(textLine.toLowerCase().split("\\W+")))
+                .groupBy((key, word) -> word)
+                .count(Materialized.as(Stores.inMemoryKeyValueStore("counts-store")));
+
+        wordCounts.toStream()
+                .peek((k, v) -> { System.out.println("Key: " + k + " ,Value: " + v); })
                 .to("persistent://public/default/streams-wordcount-output",
-                        Produced.with(Serdes.String(), Serdes.Long()));
+                Produced.with(Serdes.String(), Serdes.Long()));
 
         final Topology topology = builder.build();
         final KafkaStreams streams = new KafkaStreams(topology, props);
@@ -62,4 +64,5 @@ public class WordCount {
         }
         System.exit(0);
     }
+
 }
