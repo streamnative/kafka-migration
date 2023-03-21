@@ -4,3 +4,5 @@
 /KStream-examples/target/
 /hello-world/hello-world.iml
 /common/common.iml
+
+.DS_Store
