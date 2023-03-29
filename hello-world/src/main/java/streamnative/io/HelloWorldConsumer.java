@@ -21,7 +21,7 @@ public class HelloWorldConsumer {
 
         @SuppressWarnings("resource")
         final KafkaConsumer<String, String> consumer = new KafkaConsumer<>(props);
-        consumer.subscribe(Collections.singleton("persistent://public/default/hello-world"));
+        consumer.subscribe(Collections.singleton("persistent://public/default/hello"));
 
         // 2. Consume some messages and quit immediately
         boolean running = true;

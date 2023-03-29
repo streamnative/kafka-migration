@@ -1,8 +1,39 @@
+##############################
+## Java
+##############################
+.mtj.tmp/
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+hs_err_pid*
+##############################
+## Maven
+##############################
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+pom.xml.bak
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+##############################
+## IntelliJ
+##############################
+out/
 .idea/
-/KStream-examples/KStream-examples.iml
-/kafka-migration.iml
-/KStream-examples/target/
-/hello-world/hello-world.iml
-/common/common.iml
-
+.idea_modules/
+*.iml
+*.ipr
+*.iws
+##############################
+## OS X
+##############################
 .DS_Store
+
+

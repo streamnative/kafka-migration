@@ -1,0 +1,62 @@
+{
+  "type": "record",
+  "name": "MedicationAdherenceRecord",
+  "namespace": "com.smcpartnersllc.platform.ingestion.medicationadherence",
+  "fields": [
+    {
+      "name": "memberId",
+      "type": "string"
+    },
+    {
+      "name": "transactionId",
+      "type": "string"
+    },
+    {
+      "name": "measureCode",
+      "type": "string"
+    },
+    {
+      "name": "measureDescription",
+      "type": "string"
+    },
+    {
+      "name": "ndcCode",
+      "type": "string"
+    },
+    {
+      "name": "dateOfExtract",
+      "type": {
+        "type": "long",
+        "logicalType": "timestamp-millis"
+      }
+    },
+    {
+      "name": "pdcNumerator",
+      "type": "int"
+    },
+    {
+      "name": "adherentBenefitFlag",
+      "type": "boolean"
+    },
+    {
+      "name": "pdcRate",
+      "type": "double"
+    },
+    {
+      "name": "refillsUsed",
+      "type": "int"
+    },
+    {
+      "name": "eventId",
+      "type": "string"
+    },
+    {
+      "name": "contributorEntity",
+      "type": "string"
+    },
+   {
+      "name": "datasetName",
+      "type": "string"
+    }
+  ]
+}

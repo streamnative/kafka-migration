@@ -21,7 +21,7 @@ public class HelloWorldProducer {
 
         for (int idx = 0; idx < 1000; idx++) {
             final Future<RecordMetadata> recordMetadataFuture = producer.send(
-                    new ProducerRecord<>("persistent://public/default/hello-world", "hello-" + idx));
+                    new ProducerRecord<>("persistent://public/default/hello", "hello-" + idx));
 
             final RecordMetadata recordMetadata = recordMetadataFuture.get();
             System.out.println("Send hello-" + idx + " to " + recordMetadata);
