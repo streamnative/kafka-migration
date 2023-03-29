@@ -47,7 +47,7 @@ public class MedAdhProducer {
                     "datasetName"
             );
 
-            producer.send(new ProducerRecord<String, MedicationAdherenceRecord>(topic, "", record), new Callback() {
+            producer.send(new ProducerRecord<String, MedicationAdherenceRecord>(topic, "key", record), new Callback() {
                 @Override
                 public void onCompletion(RecordMetadata m, Exception e) {
                     if (e != null) {
