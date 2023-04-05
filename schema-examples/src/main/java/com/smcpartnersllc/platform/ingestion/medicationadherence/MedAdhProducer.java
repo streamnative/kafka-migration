@@ -12,7 +12,7 @@ import java.util.concurrent.ExecutionException;
 
 public class MedAdhProducer {
 
-    static final String topic = "persistent://tenant2/value-based-care/med-adh-in2";
+    static final String topic = "persistent://tenant2/value-based-care/med-adh-in";
 
     public static void main(String[] args) throws IOException, ExecutionException, InterruptedException {
         final Properties props = PropertyLoader.loadConfig(args[0]);

@@ -2,7 +2,6 @@ package io.streamnative.kstream;
 
 import io.streamnative.util.PropertyLoader;
 import org.apache.kafka.common.serialization.Serdes;
-import org.apache.kafka.common.utils.Bytes;
 import org.apache.kafka.streams.KafkaStreams;
 import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.StreamsConfig;
@@ -10,7 +9,6 @@ import org.apache.kafka.streams.Topology;
 import org.apache.kafka.streams.kstream.KStream;
 import org.apache.kafka.streams.kstream.Materialized;
 import org.apache.kafka.streams.kstream.Produced;
-import org.apache.kafka.streams.state.KeyValueStore;
 import org.apache.kafka.streams.state.Stores;
 
 
@@ -37,7 +35,7 @@ public class WordCount {
                 .groupBy((key, value) -> value)
                 .count(Materialized.as(Stores.inMemoryKeyValueStore("counts-store")))
                 .toStream()
-                .peek((k, v) -> { System.out.println(" Value: " + v); })
+                .peek((k, v) -> { System.out.println(String.format("Key : %s   Value: %s", k,v)); })
                 .to("persistent://public/default/streams-wordcount-output",
                         Produced.with(Serdes.String(), Serdes.Long()));
 
