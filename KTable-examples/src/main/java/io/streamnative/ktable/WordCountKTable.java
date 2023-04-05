@@ -2,15 +2,11 @@ package io.streamnative.ktable;
 
 import io.streamnative.util.PropertyLoader;
 import org.apache.kafka.common.serialization.Serdes;
-import org.apache.kafka.common.utils.Bytes;
 import org.apache.kafka.streams.KafkaStreams;
 import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.StreamsConfig;
 import org.apache.kafka.streams.Topology;
 import org.apache.kafka.streams.kstream.*;
-import org.apache.kafka.streams.state.KeyValueBytesStoreSupplier;
-import org.apache.kafka.streams.state.KeyValueStore;
-import org.apache.kafka.streams.state.StoreBuilder;
 import org.apache.kafka.streams.state.Stores;
 
 import java.util.Arrays;
@@ -31,7 +27,7 @@ public class WordCountKTable {
         final StreamsBuilder builder = new StreamsBuilder();
 
         KStream<String, String> textLines = builder.stream("persistent://public/default/sentence-topic");
-        textLines.peek((k, v) -> { System.out.println(v); });
+        textLines.peek((k, v) -> { System.out.println(String.format("Processing %s", v)); });
 
         KTable<String, Long> wordCounts = textLines
                 .flatMapValues(textLine -> Arrays.asList(textLine.toLowerCase().split("\\W+")))

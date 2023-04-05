@@ -11,7 +11,8 @@ import java.util.concurrent.ExecutionException;
 
 public class AvroProducer {
 
-    static final String topic = "persistent://public/default/avro-data";
+    //   static final String topic = "persistent://public/default/avro-data";
+    static final String topic = "persistent://tenant2/value-based-care/med-adh-in";
 
     public static void main(String[] args) throws IOException, ExecutionException, InterruptedException {
 
@@ -29,7 +30,7 @@ public class AvroProducer {
         Producer<String, DataRecordAvro> producer = new KafkaProducer<String, DataRecordAvro>(props);
 
         // Produce sample data
-        final Long numMessages = 100L;
+        final Long numMessages = 10L;
         for (Long i = 0L; i < numMessages; i++) {
             String key = "alice";
             DataRecordAvro record = new DataRecordAvro(i);

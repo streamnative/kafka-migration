@@ -22,9 +22,11 @@ public class MedAdhConsumer {
         props.put(ProducerConfig.ACKS_CONFIG, "all");
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringSerializer");
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaAvroSerializer.class);
+
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, KafkaAvroDeserializer.class);
         props.put(ConsumerConfig.GROUP_ID_CONFIG, "med-adh-consumer-avro-1");
+        // props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
         props.put(KafkaAvroSerializerConfig.SCHEMA_REGISTRY_URL_CONFIG,
                 "https://gcp-cent1-cb4bd17b-a875-4cd1-a83c-948cdfed90a4.gcp-shared-gcp-usce1-martin.streamnative.g.snio.cloud/");
 
