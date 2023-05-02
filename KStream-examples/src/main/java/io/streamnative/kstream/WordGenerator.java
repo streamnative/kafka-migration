@@ -27,10 +27,10 @@ public class WordGenerator {
 
         Producer<String, String> producer = new KafkaProducer<String, String>(props);
 
-        for (int idx = 0; idx < 100; idx++) {
+        for (int idx = 0; idx < 1000; idx++) {
             String word = SENTENCES[rnd.nextInt(SENTENCES.length)];
             final Future<RecordMetadata> recordMetadataFuture = producer.send(
-                    new ProducerRecord<>("persistent://public/default/sentence-topic", word));
+                    new ProducerRecord<>("persistent://public/default/sn-test-topic3", word));
 
             final RecordMetadata recordMetadata = recordMetadataFuture.get();
             System.out.println("Send "  + word + " to " + recordMetadata);
